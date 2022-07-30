@@ -1,0 +1,23 @@
+{
+    "name": "lap01.7",
+    "version": "1.0.0",
+    "description": "",
+    "main": "app.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "nodemon app.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/TungLT159/Lap-1-5.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/TungLT159/Lap-1-5/issues"
+    },
+    "homepage": "https://github.com/TungLT159/Lap-1-5#readme",
+    "dependencies": {
+        "nodemon": "^1.18.3"
+    }
+}

@@ -1,15 +1,1 @@
-[{
-        "id": "313123",
-        "title": "A Book",
-        "imageUrl": "https://www.publicdomainpictures.net/pictures/10000/velka/1-1210009435EGmE.jpg",
-        "description": "This is an awesome book!",
-        "price": "19"
-    },
-    {
-        "title": "one piece",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/vi/9/90/One_Piece%2C_Volume_61_Cover_%28Japanese%29.jpg",
-        "description": "so good!!",
-        "price": "12.3",
-        "id": "0.6460725910053298"
-    }
-]
+[{"id":"313123","title":"A Book","imageUrl":"https://www.publicdomainpictures.net/pictures/10000/velka/1-1210009435EGmE.jpg","description":"This is an awesome book!","price":"19"},{"id":"0.6351429328460039","title":"One Piece","imageUrl":"https://upload.wikimedia.org/wikipedia/vi/9/90/One_Piece%2C_Volume_61_Cover_%28Japanese%29.jpg","description":"so. good!!","price":"13.04"}]

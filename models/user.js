@@ -12,13 +12,9 @@ class User {
         return db
             .collection('users')
             .insertOne(this)
-            .then(result => {
-                console.log(result)
-            })
-            .catch(err => console.log(err))
     }
 
-    findById(userId) {
+    static findById(userId) {
         const db = getDb()
         return db
             .collection('users')

@@ -101,8 +101,9 @@ exports.postOrder = (req, res, next) => {
 
 exports.getOrders = (req, res, next) => {
     req.user
-        .getOrders({ include: ['products'] })
+        .getOrders()
         .then(orders => {
+            console.log(orders)
             res.render('shop/orders', {
                 path: '/orders',
                 pageTitle: 'Your Orders',
@@ -111,11 +112,4 @@ exports.getOrders = (req, res, next) => {
         })
         .catch(err => console.log(err))
 
-};
-
-exports.getCheckout = (req, res, next) => {
-    res.render('shop/checkout', {
-        path: '/checkout',
-        pageTitle: 'Checkout'
-    });
 };

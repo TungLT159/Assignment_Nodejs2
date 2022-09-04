@@ -1,0 +1,49 @@
+<%- include('../includes/head.ejs') %>
+    </head>
+
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+        <main class="container">
+            <div class="card mx-auto p-5 mt-5" style="max-width: 800px;">
+                <div class="row g-0">
+                  <div class="col-md-4">
+                    <img src="<%= staff.imageUrl %>"" class="img-fluid img-avatar" alt="staffImage" />
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <h5 class="card-title">Họ và tên: <%= staff.name %></h5>
+                      <p class="card-text">Id: <%= staff._id %></p>
+                      <p class="card-text">Hệ số lương: <%= staff.salaryScale %></p>
+                      <p class="card-text">Ngày sinh: <%= doB %></p>
+                      <p class="card-text">Ngày vào công ty: <%= startDate %></p>
+                      <p class="card-text">Phòng ban: <%= staff.department %><p>
+                      <p class="card-text">Số ngày nghỉ còn lại: <%= staff.annualLeave %><p>
+                    </div>
+                  </div>
+                </div>
+                <button style="max-width: 200px;" type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Đổi ảnh đại diện
+                </button>
+                
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Đổi ảnh đại diện</h5>
+                        </div>
+                        <div class="modal-body">
+                        <form action="/post-image" method="post">
+                            <div class="form-group mb-3">
+                                <label for="exampleFormControlInput1">Url Ảnh:</label>
+                                <input type="text" class="form-control" name="imageUrl" placeholder="Nhập link ảnh" >
+                              </div>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                            <button type="submit" class="btn btn-primary">Lưu Ảnh</button>
+                        </form>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+              </div>
+        </main>
+        <%- include('../includes/end.ejs') %>

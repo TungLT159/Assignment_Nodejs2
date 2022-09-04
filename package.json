@@ -8,8 +8,15 @@
         "start": "nodemon app.js",
         "start-server": "node app.js"
     },
-    "author": "Maximilian Schwarzmüller",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/TungLT159/Assignment-1.git"
+    },
+    "author": "Tungle",
     "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/TungLT159/Assignment-1/issues"
+    },
     "devDependencies": {
         "nodemon": "^1.18.3"
     },

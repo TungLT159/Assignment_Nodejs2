@@ -1,0 +1,130 @@
+<%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/product.css">
+</head>
+
+<body>
+    <%- include('../includes/navigation.ejs') %>
+
+    <main class="container">
+        <h5 class="mt-3">Trạng thái: <% if(!isWork) { %><i class="fa-solid fa-circle-dot red"></i> Không làm việc <% } else { %><i class="fa-solid fa-circle-dot green"></i> Đang làm việc <% } %></h5>
+        <div class="accordion mt-3" id="accordionExample">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  Điểm danh
+                </button>
+              </h2>
+              <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <div class="form-checkin">
+                        <form action="<% if (!isWork) { %>/start-work<% } else { %>/end-work<% } %>" method="post">
+                            <div class="form-group">
+                              <label for="exampleFormControlInput1">Tên nhân viên:</label>
+                              <input type="email" class="form-control" name="name" value="<%= staff.name %>" disabled>
+                            </div>
+                            <div class="form-group">
+                              <label for="place">Nơi làm việc:</label>
+                              <select class="form-control" id="place" name="placeWork">
+                                <option default value="Công ty">Công ty</option>
+                                <option value="Nhà">Nhà</option>
+                                <option value="Khách hàng">Khách hàng</option>
+                              </select>
+                            </div>
+                            <button class="btn btn-outline-primary mt-3" type="submit"><% if(!isWork) { %>Bắt đầu làm việc<% } else { %>Ngừng làm việc<% } %></button>
+                          </form>
+                    </div>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  Kết thúc làm
+                </button>
+              </h2>
+              <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <div class="form-checkout">
+                        <div class="row">
+                          <p>Số giờ đã làm hôm nay: <%= staff.totalHours.toFixed(1) %>h</p>
+                        </div>
+                        <div class="row">
+                            <p>Danh sách các lần làm việc trong ngày:</p>
+                              <% staff.sessionWork[staff.sessionWork.length - 1].forEach(item => { %>
+                                  <% if(item.timeStart || item.placeWork) { %>
+                                    <ul>
+                                      <li><%= item.timeStart.getHours() %>:<%if (item.timeStart.getMinutes()<10) { %>0<%= item.timeStart.getMinutes() %><% } else { %><%= item.timeStart.getMinutes() %><% } %> - <%= item.placeWork %></li>
+                                    </ul>
+                                  <% } %>
+                              <% }) %>
+                        </div>
+                        <div>
+                          <form action="/end-day-work" method="post">
+                            <button type="submit" class="btn btn-outline-primary">Kết thúc ngày làm</button>
+                          </form>
+                        </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                  Nghỉ phép
+                </button>
+              </h2>
+              <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  <form action="/off-work" method="post" class="row g-3">
+                    <div class="col-md-6">
+                      <label for="dateStart" class="form-label">Từ ngày</label>
+                      <input type="date" class="form-control" id="dateStart" name="dateStart">
+                    </div>
+                    <div class="col-md-6">
+                      <label for="dateEnd" class="form-label">Đến ngày</label>
+                      <input type="date" class="form-control" id="dateEnd" name="dateEnd">
+                    </div>
+                    <% if(messageErr) { %>
+                      <div id="emailHelp" class="form-text text-danger"><%= messageErr %></div>
+                    <% } %>
+                    <div class="col-12">
+                      <label for="inputAddress" class="form-label">Lý do</label>
+                      <input type="text" class="form-control" id="inputAddress" placeholder="Lý do xin nghỉ phép" name="reason">
+                    </div>
+                    <div class="col-12">
+                      <label for="inputAddress2" class="form-label">Số ngày nghỉ còn lại</label>
+                      <input type="text" class="form-control" id="inputAddress2" value="<%= staff.annualLeave %>" disabled name="annualLeave">
+                      <% if(staff.annualLeave == 0) { %>
+                        <div id="emailHelp" class="form-text text-danger">Số ngày nghỉ đã hết, không thể đăng ký thêm</div>
+                      <% } %>
+                    </div>
+                    <div class="col-md-12">
+                      <label for="inputCity" class="form-label">Chọn số giờ sẽ nghỉ</label>
+                      <select class="form-control" id="inputCity" name="hourAnnualLeave">
+                        <option default value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                      </select>
+                    </div>
+                    <% if(staff.annualLeave == 0) { %>
+                    <div class="col-12">
+                      <button type="submit" class="btn btn-outline-primary" disabled>Đăng ký</button>
+                    </div>
+                    <% } else { %>
+                      <div class="col-12">
+                        <button type="submit" class="btn btn-outline-primary">Đăng ký</button>
+                      </div>
+                    <% } %>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+    </main>
+<%- include('../includes/end.ejs') %>

@@ -1,0 +1,67 @@
+<%- include('../includes/head.ejs') %>
+</head>
+
+<body>
+    <%- include('../includes/navigation.ejs') %>
+    <main class="container">
+        <div class="row">
+            <h1 class="text-center mt-3">Thông Tin Covid của <%= staff.name %></h1>
+            <hr>
+            <div class="row">
+                <div class="col-6">
+                    <div class="card mb-5 mr-3 p-3">
+                        <form action="/covid" method="post">
+                            <h2 class="mb-3">Đăng ký thông tin Covid</h2>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="floatingInput" placeholder="Nhiệt độ cơ thể (℃)" name="temp">
+                                <label for="floatingInput">Nhiệt độ cơ thể (℃)</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="date" class="form-control" id="floatingInput" placeholder="Ngày tiêm mũi 1" name="dateVaccine1">
+                                <label for="floatingInput">Ngày tiêm mũi 1</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="floatingInput" placeholder="Loại vaccine" name="typeVaccine1">
+                                <label for="floatingInput">Loại vaccine</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="date" class="form-control" id="floatingInput" placeholder="Ngày tiêm mũi 2" name="dateVaccine2">
+                                <label for="floatingInput">Ngày tiêm mũi 2</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="floatingInput" placeholder="Loại vaccine" name="typeVaccine2">
+                                <label for="floatingInput">Loại vaccine</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="date" class="form-control" id="floatingInput" placeholder="Ngày bị nhiễm" name="dateInfection">
+                                <label for="floatingInput">Ngày bị nhiễm</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="floatingInput" placeholder="Những nơi đã đi đến" name="place">
+                                <label for="floatingInput">Những nơi đã đi đến</label>
+                            </div>
+                             <button type="submit" class="btn btn-outline-primary">Đăng ký</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="card p-3">
+                        <h2 class="card-title">Thông tin Covid</h2>
+                        <div class="card-body">
+                            <p class="card-text">Nhiệt độ cơ thể: <%if(!covid.temp) { %>  Chưa cập nhật <% } else { %> <%= covid.temp %> <% } %>(℃) - Thời gian lấy nhiệt độ: <%if(!covid.dateTemp) { %> Chưa cập nhật <% } else { %> <%= dateTemp %> <% } %></p>
+                            <p class="card-text">Ngày tiêm mũi 1: <%if(!covid.dateVaccine1) { %> Chưa cập nhật <% } else { %> <%= dateVaccine1 %> <% } %></p>
+                            <p class="card-text">Loại vaccine mũi 1: <%if(!covid.typeVaccine1) { %> Chưa cập nhật <% } else { %> <%= covid.typeVaccine1 %> <% } %></p>
+                            <p class="card-text">Ngày tiêm mũi 2: <%if(!covid.dateVaccine2) { %> Chưa cập nhật <% } else { %> <%= dateVaccine2 %> <% } %></p>
+                            <p class="card-text">Loại vaccine mũi 2: <%if(!covid.dateVaccine2) { %> Chưa cập nhật <% } else { %> <%= covid.typeVaccine2 %> <% } %></p>
+                            <p class="card-text">Đang bị nhiễm: <% if(covid.place === '') { %> Không <% } else { %> Có <% } %> </p>
+                            <% if(covid.dateInfection && covid.place !== '') { %>
+                                <p class="card-text">Ngày bị nhiễm: <%= dateInfection %></p>
+                                <p class="card-text">Những nơi đã đi đến: <%= covid.place %></p>
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+<%- include('../includes/end.ejs') %>

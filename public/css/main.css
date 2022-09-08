@@ -40,11 +40,18 @@
     color: white;
 } */
 
-@media (min-width: 768px) {
+
+/* @media (min-width: 768px) {
     .main-header__nav {
         display: flex;
     }
     #side-menu-toggle {
         display: none;
+    }
+} */
+
+@media (max-width: 768px) {
+    .sm-text {
+        font-size: 12px;
     }
 }

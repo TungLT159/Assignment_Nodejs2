@@ -8,7 +8,7 @@
             <h1 class="text-center mt-3">Thông Tin Covid của <%= staff.name %></h1>
             <hr>
             <div class="row">
-                <div class="col-6">
+                <div class="col-12 col-lg-6">
                     <div class="card mb-5 mr-3 p-3">
                         <form action="/covid" method="post">
                             <h2 class="mb-3">Đăng ký thông tin Covid</h2>
@@ -44,19 +44,19 @@
                         </form>
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-12 col-lg-6 mb-5">
                     <div class="card p-3">
                         <h2 class="card-title">Thông tin Covid</h2>
                         <div class="card-body">
-                            <p class="card-text">Nhiệt độ cơ thể: <%if(!covid.temp) { %>  Chưa cập nhật <% } else { %> <%= covid.temp %> <% } %>(℃) - Thời gian lấy nhiệt độ: <%if(!covid.dateTemp) { %> Chưa cập nhật <% } else { %> <%= dateTemp %> <% } %></p>
-                            <p class="card-text">Ngày tiêm mũi 1: <%if(!covid.dateVaccine1) { %> Chưa cập nhật <% } else { %> <%= dateVaccine1 %> <% } %></p>
-                            <p class="card-text">Loại vaccine mũi 1: <%if(!covid.typeVaccine1) { %> Chưa cập nhật <% } else { %> <%= covid.typeVaccine1 %> <% } %></p>
-                            <p class="card-text">Ngày tiêm mũi 2: <%if(!covid.dateVaccine2) { %> Chưa cập nhật <% } else { %> <%= dateVaccine2 %> <% } %></p>
-                            <p class="card-text">Loại vaccine mũi 2: <%if(!covid.dateVaccine2) { %> Chưa cập nhật <% } else { %> <%= covid.typeVaccine2 %> <% } %></p>
-                            <p class="card-text">Đang bị nhiễm: <% if(covid.place === '') { %> Không <% } else { %> Có <% } %> </p>
+                            <p class="card-text">Nhiệt độ cơ thể <i class="fa-solid fa-temperature-high"></i>: <%if(!covid.temp) { %>  Chưa cập nhật <% } else { %> <%= covid.temp %> <% } %>(℃) - Thời gian lấy nhiệt độ: <%if(!covid.dateTemp) { %> Chưa cập nhật <% } else { %> <%= dateTemp %> <% } %></p>
+                            <p class="card-text">Ngày tiêm mũi 1 <i class="fa-regular fa-calendar-days"></i>: <%if(!covid.dateVaccine1) { %> Chưa cập nhật <% } else { %> <%= dateVaccine1 %> <% } %></p>
+                            <p class="card-text">Loại vaccine mũi 1 <i class="fa-solid fa-syringe"></i>: <%if(!covid.typeVaccine1) { %> Chưa cập nhật <% } else { %> <%= covid.typeVaccine1 %> <% } %></p>
+                            <p class="card-text">Ngày tiêm mũi 2 <i class="fa-regular fa-calendar-days"></i>: <%if(!covid.dateVaccine2) { %> Chưa cập nhật <% } else { %> <%= dateVaccine2 %> <% } %></p>
+                            <p class="card-text">Loại vaccine mũi 2 <i class="fa-solid fa-syringe"></i>: <%if(!covid.dateVaccine2) { %> Chưa cập nhật <% } else { %> <%= covid.typeVaccine2 %> <% } %></p>
+                            <p class="card-text">Đang bị nhiễm <i class="fa-solid fa-mask-face"></i>: <% if(!covid.dateInfection) { %> Không <% } else { %> Có <% } %> </p>
                             <% if(covid.dateInfection && covid.place !== '') { %>
-                                <p class="card-text">Ngày bị nhiễm: <%= dateInfection %></p>
-                                <p class="card-text">Những nơi đã đi đến: <%= covid.place %></p>
+                                <p class="card-text">Ngày bị nhiễm <i class="fa-regular fa-calendar-days"></i>: <%= dateInfection %></p>
+                                <p class="card-text">Những nơi đã đi đến <i class="fa-solid fa-map-location-dot"></i>: <%= covid.place %></p>
                             <% } %>
                         </div>
                     </div>

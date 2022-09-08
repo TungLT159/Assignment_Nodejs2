@@ -22,7 +22,7 @@
               <% staff.sessionWork.forEach(item => { %>
                 <% item.forEach(i => { %>
                   <tr>
-                    <td><%= i.timeStart.getDate() %>/<%= i.timeStart.getMonth() %>/<%= i.timeStart.getFullYear() %></td>
+                    <td><%= i.timeStart.getDate() %>/<%= i.timeStart.getMonth() + 1 %>/<%= i.timeStart.getFullYear() %></td>
                     <td><%= i.placeWork %></td>
                     <% if(i.hourAnnualLeave) { %>
                       <td><%= i.hourAnnualLeave %></td>

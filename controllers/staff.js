@@ -93,12 +93,20 @@ exports.postWork = (req, res) => {
 exports.getCovid = (req, res, next) => {
     Covid.find({ 'staff.staffId': req.staff._id })
         .then(covidData => {
-            if (!covidData) {
-                throw new Error('Can not found covid info')
+            if (covidData.length == 0) {
+                return res.render('viewStaff/covid-info', {
+                    pageTitle: 'Thông tin covid',
+                    path: '/covid',
+                    staff: req.staff,
+                    covid: ''
+                })
             }
             const covid = covidData[0]
-            if (covid.dateInfection === null) {
-                covid.dateInfection = new Date()
+            let dateInfection = ''
+            if (covid.dateInfection == undefined) {
+                dateInfection = 'Chưa cập nhật'
+            } else {
+                dateInfection = `${covid.dateInfection.getDate()}/${covid.dateInfection.getMonth() + 1}/${covid.dateInfection.getFullYear()}`
             }
             return res.render('viewStaff/covid-info', {
                 pageTitle: 'Thông tin covid',
@@ -107,11 +115,15 @@ exports.getCovid = (req, res, next) => {
                 covid: covid,
                 dateVaccine1: `${covid.dateVaccine1.getDate()}/${covid.dateVaccine1.getMonth() + 1}/${covid.dateVaccine1.getFullYear()}`,
                 dateVaccine2: `${covid.dateVaccine2.getDate()}/${covid.dateVaccine2.getMonth() + 1}/${covid.dateVaccine2.getFullYear()}`,
-                dateTemp: `${covid.dateTemp.getHours()}:${covid.dateTemp.getMinutes()} - ${covid.dateTemp.getDate()}/${covid.dateTemp.getMonth() + 1}/${covid.dateVaccine2.getFullYear()}`,
-                dateInfection: `${covid.dateInfection.getDate()}/${covid.dateInfection.getMonth() + 1}/${covid.dateInfection.getFullYear()}`
+                dateTemp: `${covid.dateTemp.getHours()}h${covid.dateTemp.getMinutes()} - ${covid.dateTemp.getDate()}/${covid.dateTemp.getMonth() + 1}/${covid.dateVaccine2.getFullYear()}`,
+                dateInfection: dateInfection
             })
         })
-        .catch(err => console.log(err))
+        .catch(err => {
+            const error = new Error(err)
+            error.httpStatusCode = 500
+            return next(error)
+        })
 }
 
 exports.postCovid = (req, res, next) => {

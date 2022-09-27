@@ -1,0 +1,9 @@
+.search-resul-container {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.search-resul-container > img {
+	width: auto;
+	margin: 10px;
+}

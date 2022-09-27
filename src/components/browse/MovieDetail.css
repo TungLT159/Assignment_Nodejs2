@@ -1,0 +1,16 @@
+.movie_detail {
+	display: grid;
+	grid-template-columns: 50% 50%;
+}
+
+.movie_detail_data {
+	padding-right: 30px;
+}
+
+.movie_detail_data hr {
+	margin: 20px 0px;
+}
+
+.movie-list-title {
+	font-family: "Arial"
+}

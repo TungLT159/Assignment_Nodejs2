@@ -36,7 +36,7 @@
                       <td><%= i.timeEnd.getHours() %>:<%if (i.timeEnd.getMinutes()<10) { %>0<%= i.timeEnd.getMinutes() %><% } else { %><%= i.timeEnd.getMinutes() %><% } %></td>
                     <% } %>
                     <td><%= i.totalHour %></td>
-                    <% if(i.totalHourWork) { %>
+                    <% if(i.totalHourWork || i.totalHourWork == 0) { %>
                       <td><%= i.totalHourWork %></td>
                     <% } else { %>
                       <td>Chưa kết thúc</td>

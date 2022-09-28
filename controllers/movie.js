@@ -172,8 +172,26 @@ exports.postSearch = (req, res) => {
                 overview.indexOf(search.toLowerCase()) !== -1
             );
         });
-        //Loc theo the loai
+        if (option && (typeFilm || typeFilm !== "")) {
+            const dataFilter = data.filter((movie) => {
+                if (movie.genre_ids) {
+                    return movie.genre_ids.includes(option);
+                }
+            });
+            const dataType = dataFilter.filter(
+                (movie) => movie.media_type === typeFilm
+            );
+            for (let i = (page - 1) * 20; i < page * 20; i++) {
+                result.push(dataType[i]);
+            }
+            return res.status(200).send({
+                results: result,
+                page: page,
+                total_pages: Math.ceil(dataType.length / 20),
+            });
+        }
         if (option) {
+            //Loc theo the loai
             const dataFilter = data.filter((movie) => {
                 if (movie.genre_ids) {
                     return movie.genre_ids.includes(option);

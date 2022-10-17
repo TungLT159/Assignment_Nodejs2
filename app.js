@@ -18,4 +18,8 @@ app.use((req, res, next) => {
     res.status(404).send({ message: "Route not found" });
 });
 
-app.listen(3001);
+// app.listen(3001);
+
+app.listen(process.env.PORT || 8080, "0.0.0.0", () => {
+    console.log("Server is running");
+});

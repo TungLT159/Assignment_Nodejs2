@@ -60,7 +60,7 @@ exports.getWithGerne = (req, res, next) => {
             return res.status(400).send({ message: "Not found gerneId parram" });
         }
         let data = movies.filter((movie) => {
-            if (movie.genre_ids) {
+            if (movie?.genre_ids) {
                 return movie.genre_ids.includes(genreId);
             }
         });
